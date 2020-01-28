@@ -33,7 +33,7 @@
         dense
         hide-details
       >
-        <span slot="prepend-inner">{{ `${idx + 1})` }}</span>
+        <span slot="prepend-inner" v-text="getTodoNumber(idx)"></span>
         <v-btn v-if="!todo.complete" @click="complete(todo)" icon slot="append">
           <v-icon small>fas fa-check</v-icon>
         </v-btn>
@@ -64,7 +64,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { COLLECTION, DEFAULT_PAGE } from '../helpers/constants'
+import { COLLECTION, DEFAULT_PAGE, TODO_PER_PAGE } from '../helpers/constants'
 
 export default {
   name: 'card',
@@ -124,6 +124,10 @@ export default {
 
       this.$store.dispatch('loading')
       this.$router.push(page)
+    },
+    getTodoNumber(idx) {
+      // Вычисление порядкового номера задачи
+      return `${(this.page - 1) * TODO_PER_PAGE + idx + 1})`
     },
     // Всплывающее окно с заголовком, датой создания и датой выполнения
     getTitle: ({ title, createdAt, completedAt }) =>
