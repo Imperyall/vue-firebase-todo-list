@@ -79,9 +79,6 @@ export default {
     },
     ...mapState([COLLECTION, 'loading', 'pages'])
   },
-  created() {
-    this.init()
-  },
   methods: {
     init() {
       this.$store.dispatch('bindTodos', this.page)
@@ -138,9 +135,12 @@ export default {
       }`
   },
   watch: {
-    $route() {
-      // Смещение списка согласно странице
-      this.init()
+    $route: {
+      immediate: true,
+      handler() {
+        // Смещение списка согласно странице
+        this.init()
+      }
     },
     pages(pages) {
       // Редирект на главную, если изменилось количество страниц и текущая вышла за границы
