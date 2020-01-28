@@ -1,4 +1,4 @@
-# todo_list
+# vue-firebase-todo-list
 
 ## Project setup
 
