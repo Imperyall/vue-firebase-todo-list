@@ -33,7 +33,7 @@
         dense
         hide-details
       >
-        <!-- <v-icon small slot="append">fas fa-pen</v-icon> -->
+        <span slot="prepend-inner">{{ `${idx + 1})` }}</span>
         <v-btn v-if="!todo.complete" @click="complete(todo)" icon slot="append">
           <v-icon small>fas fa-check</v-icon>
         </v-btn>
@@ -58,9 +58,6 @@
           Add Card
         </v-btn>
       </div>
-      <!-- <v-btn icon>
-        <v-icon>fas fa-ellipsis-h</v-icon>
-      </v-btn> -->
     </v-card-actions>
   </v-card>
 </template>
